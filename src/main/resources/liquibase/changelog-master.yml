@@ -1,0 +1,50 @@
+databaseChangeLog:
+  - include:
+      file: liquibase/changesets/01012023_create_table.yml
+      databaseChangeLog:
+        - changeSet:
+            id: 1
+            author: Nikita
+            changes:
+              - createTable:
+                  tableName: employee
+                  columns:
+                    - column:
+                        name: employee# название колонки
+                        type: int
+                        autoIncrement: true
+                        constraints:
+                          primaryKey: true
+                    - column:
+                        name: 1
+                        type: int
+                        constraints:
+                          nullable: false
+                    - column:
+                        name: 2
+                        type: int
+                        constraints:
+                          nullable: false
+        - changeSet:
+            id: 2
+            author: Nikita
+            changes:
+              - createTable:
+                  tableName: position
+                  columns:
+                    - column:
+                        name: position
+                        type: int
+                        autoIncrement: true
+                        constraints:
+                          primaryKey: true
+                    - column:
+                        name: 3
+                        type: int
+                        constraints:
+                          nullable: false
+                    - column:
+                        name: 2
+                        type: int
+                        constraints:
+                          nullable: false
