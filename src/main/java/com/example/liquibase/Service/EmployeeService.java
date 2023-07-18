@@ -21,6 +21,7 @@ import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.awt.print.Pageable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -67,7 +68,7 @@ public class EmployeeService {
 
     public EmployeeDto getEmployeeWithMinSalary() {
         logger.info("Вызван метод поиска сотрудника по минимальной заработной плате");
-        Page<EmployeeDto> page = employeeRepository.getEmployeeWithMinSalary(PageRequest.of(0, 1));
+        Page<EmployeeDto> page = employeeRepository.getEmployeeWithMinSalary((Pageable) PageRequest.of(0, 1));
         if (page.isEmpty()) {
             return null;
         }
@@ -202,11 +203,11 @@ public class EmployeeService {
 
     }
 
-    public void upload(MultipartFile file) {
+    public void upload(MultipartFile file) throws IOException{
         try {
-            List<EmployeeDto> dtos = objectMapper.readValue(file.getBytes(), new TypeReference<>() {
+            List<EmployeeDto> dto = objectMapper.readValue(file.getBytes(), new TypeReference<List<EmployeeDto>>() {
             });
-            dtos.stream()
+            dto.stream()
                     .map(employeeMapper::toEntity)
                     .forEach(e -> employeeRepository::save);
 

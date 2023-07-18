@@ -13,7 +13,7 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name="Position id")
-    private com.example.log.Employee.position position;
+    private com.example.liquibase.Employee.position position;
 
 
     public Employee(String name, int salary) {
@@ -48,11 +48,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public com.example.log.Employee.position getPosition() {
+    public com.example.liquibase.Employee.position getPosition() {
         return position;
     }
 
-    public void setPosition(com.example.log.Employee.position position) {
+    public void setPosition(com.example.liquibase.Employee.position position) {
         this.position = position;
     }
 }

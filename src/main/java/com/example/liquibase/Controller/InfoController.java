@@ -13,7 +13,7 @@ public class InfoController {
 
     private final EmployeeService employeeService;
 
-    @Value("${app.nev}")
+    @Value("${app.env}")
     public String appEnv;
 
     @Value("${dev}")
@@ -42,6 +42,10 @@ public class InfoController {
     public void setDev(String dev) {
         this.dev = dev;
     }
+
+
+
+
 
 
 }

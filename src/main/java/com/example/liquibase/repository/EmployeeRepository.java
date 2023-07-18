@@ -22,7 +22,7 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
     @Query("SELECT new com.example.liquibase.dto.EmployeeDto(e.id,e.name,e.salary,p.position)FROM Employee e LEFT JOIN FETCH position p WHERE e.salary=(SELECT MIN (e.salary)FROM Employee e)")
     Page<EmployeeDto> getEmployeeWithMinSalary(Pageable pageable);
 
-    @Query("SELECT new com.example.liquibase.dto.EmployeeDto(e.id,e.name,e.salary,p.position)FROM Employee e LEFT JOIN FETCH position p WHERE e.salary=(SELECT MAX(e.salary)FROM Employee e)")
+    @Query("SELECT new com.example.liquibase.dto.EmployeeDto(e.id,e.salary,p.position,e.name)FROM Employee e LEFT JOIN FETCH position p WHERE e.salary=(SELECT MAX(e.salary)FROM Employee e)")
     List<EmployeeDto> getEmployeeWithMaxSalary();
 
     List<Employee> findEmployeeBySalaryIsGreaterThan(double salary);
