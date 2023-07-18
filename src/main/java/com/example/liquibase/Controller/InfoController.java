@@ -1,7 +1,7 @@
 package com.example.liquibase.Controller;
 
 import com.example.liquibase.Service.EmployeeService;
-import lombok.Value;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

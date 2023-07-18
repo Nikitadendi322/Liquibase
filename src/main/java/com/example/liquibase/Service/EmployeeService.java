@@ -205,7 +205,7 @@ public class EmployeeService {
 
     public void upload(MultipartFile file) throws IOException{
         try {
-            List<EmployeeDto> dto = objectMapper.readValue(file.getBytes(), new TypeReference<List<EmployeeDto>>() {
+            List<EmployeeDto> dto = objectMapper.readValue(file.getBytes(), new TypeReference<>() {
             });
             dto.stream()
                     .map(employeeMapper::toEntity)

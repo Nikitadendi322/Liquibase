@@ -6,6 +6,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,7 +84,7 @@ public class EmployeeController {
         return employeeService.getEmployeeFromPage(page);
     }
     @PostMapping(value = "/upload",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public void upload(@RequestPart("employees") MultipartFile file){
+    public void upload(@RequestPart("employees") MultipartFile file) throws IOException {
         employeeService.upload(file);
     }
 
