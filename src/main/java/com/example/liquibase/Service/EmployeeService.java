@@ -1,6 +1,5 @@
 package com.example.liquibase.Service;
 
-import aj.org.objectweb.asm.TypeReference;
 import com.example.liquibase.Employee.Employee;
 import com.example.liquibase.Employee.Report;
 import com.example.liquibase.dto.EmployeeDto;
@@ -9,6 +8,7 @@ import com.example.liquibase.exception.EmployeeNotValidException;
 import com.example.liquibase.repository.EmployeeRepository;
 import com.example.liquibase.repository.ReportRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -203,16 +203,15 @@ public class EmployeeService {
 
     }
 
-    public void upload(MultipartFile file) throws IOException{
+    public void upload(MultipartFile file)throws IOException {
         try {
-            List<EmployeeDto> dto = objectMapper.readValue(file.getBytes(), new TypeReference<>() {
+            List<EmployeeDto> dto = objectMapper.readValue(file.getBytes(), new TypeReference<List<EmployeeDto>>() {
             });
             dto.stream()
                     .map(employeeMapper::toEntity)
-                    .forEach(e -> employeeRepository::save);
-
+                    .forEach(employeeRepository::save);
         }catch (IOException e){
-            throw new RuntimeException(e);
+            throw (e);
         }
     }
 

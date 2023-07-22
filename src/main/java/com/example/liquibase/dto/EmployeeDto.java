@@ -13,8 +13,10 @@ public class EmployeeDto {
         this.position=position;
     }
 
-    public EmployeeDto(){
+    public EmployeeDto() {
+
     }
+
 
     public int getId() {
         return id;
@@ -56,4 +58,6 @@ public class EmployeeDto {
                 ", salary=" + salary +
                 '}';
     }
+
+
 }
